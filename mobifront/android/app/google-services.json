@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "964306475293",
+    "project_id": "mobilus-45139",
+    "storage_bucket": "mobilus-45139.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964306475293:android:62223da017829d5c5ae9f4",
+        "android_client_info": {
+          "package_name": "br.com.uperinfo.mobifront"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964306475293-dmqhlk69bs6hjbo9rfva8sn8rjo4pkso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR0yiqIaToI1XmU0zfV2Z6-gx1qP1wIOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964306475293-dmqhlk69bs6hjbo9rfva8sn8rjo4pkso.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "964306475293-7m2sfqfho1a10g8f7o879rt0fmnsp2is.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.uperinfo.mobifront"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

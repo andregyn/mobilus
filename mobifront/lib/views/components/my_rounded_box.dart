@@ -9,7 +9,7 @@ class MyRoundedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: color ?? const Color.fromARGB(255, 246, 247, 248),
             borderRadius: BorderRadius.circular(8),

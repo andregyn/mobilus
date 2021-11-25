@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobifront">
+    package="br.com.uperinfo.mobifront">
    <application
         android:label="mobifront"
         android:icon="@mipmap/ic_launcher">

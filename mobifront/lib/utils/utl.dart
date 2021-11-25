@@ -23,6 +23,26 @@ class Utl {
   }
 
 
+
+static Future<void> execProgress(
+    BuildContext context, String? message, Future<void> Function() f) async {
+  try {
+    await showDialog(
+        barrierDismissible: false,
+        context: mainContext!,
+        builder: (context) => FutureProgressDialog(Future(() async {
+              await f();
+            }),
+                message: message == null
+                    ? Text(message ?? "Aguarde...")
+                    : message.isEmpty
+                        ? null
+                        : Text(message)));
+  } catch (e) {
+    Utl.log("execProgress", e);
+  }
+}
+
   static double getRoundedInterval(double val) {
     double m = 1;
     double d = val;

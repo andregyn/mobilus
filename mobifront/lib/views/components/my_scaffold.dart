@@ -141,8 +141,13 @@ class _MyScaffoldState extends State<MyScaffold> {
                                       children: [
                                         (Navigator.canPop(context))
                                             ? IconButton(
-                                                icon: const Icon(
-                                                    Icons.arrow_back_ios),
+                                                icon: Icon(
+                                                  Icons.arrow_back_ios,
+                                                  color: isShrink
+                                                      ? Theme.of(context)
+                                                          .primaryColor
+                                                      : Colors.white,
+                                                ),
                                                 onPressed: () {
                                                   Future.delayed(Duration.zero,
                                                       () {

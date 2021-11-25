@@ -133,39 +133,19 @@ class _HomePageState extends State<HomePage> {
                                 width: 100.w - 32,
                                 child: LineChartTemplate(
                                   toolTipText: (element) {
-                                    return controller
-                                            .cases[element.spotIndex].data +
-                                        "\n${Utl.brQty(element.y)} " +
+                                    return ((element.barIndex == 0)
+                                            ? controller
+                                                    .cases[element.spotIndex]
+                                                    .data +
+                                                "\n"
+                                            : "") +
+                                        "${Utl.brQty(element.y)} " +
                                         (element.barIndex == 0
                                             ? " casos"
                                             : "mortes");
                                   },
                                   height: 120,
                                   series: [controller.cases, controller.deaths],
-                                  title: "",
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Novos casos de Covid-19 no Brasil nos últimos 6 meses",
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: SizedBox(
-                                height: 30.h,
-                                width: 100.w - 32,
-                                child: LineChartTemplate(
-                                  toolTipText: (element) {
-                                    return controller
-                                            .cases[element.spotIndex].data +
-                                        "\n${Utl.brQty(element.y)} casos";
-                                  },
-                                  height: 120,
-                                  series: [controller.daily],
                                   title: "",
                                 ),
                               ),
@@ -183,20 +163,48 @@ class _HomePageState extends State<HomePage> {
                               height: 30.h,
                               child: LineChartTemplate(
                                 toolTipText: (element) {
-                                  return controller
-                                          .cases[element.spotIndex].data +
-                                      "\n${Utl.brQty(element.y)} casos";
+                                  return ((element.barIndex == 0)
+                                          ? controller.cases[element.spotIndex]
+                                                  .data +
+                                              "\n"
+                                          : "") +
+                                      ((element.barIndex == 0)
+                                          ? "Média: ${Utl.intNumber(element.y)} "
+                                          : "Casos: ${Utl.intNumber(element.y)} ");
                                 },
                                 height: 120,
-                                series: [
-                                  controller.mobile,
-                                ],
+                                series: [controller.mobile, controller.daily],
                                 title: "",
                               ),
                             ),
                             Row(
-                              children: [Text("")],
-                            )
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      bool called= false;
+                                      bool ok = false;
+                                      await Utl.execProgress(context, "Obtendo dados...", async () { 
+                                        if (!called) { 
+                                      ok = await controller.getTopMost();
+
+                                        }
+
+                                      });
+                                      Navigator.pushNamed(context, "/details",
+                                          arguments: controller);
+                                    },
+                                    child: const Text(
+                                        "Ver piores dias no último mês...")),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, "/details",
+                                          arguments: controller);
+                                    },
+                                    child: const Text("Ver detalhes..."))
+                              ],
+                            ),
+                            SizedBox(height: 50.h)
                           ]),
                     ),
         ));

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
 set(BINARY_NAME "mobifront")
-set(APPLICATION_ID "com.example.mobifront")
+set(APPLICATION_ID "br.com.uperinfo.mobifront")
 
 cmake_policy(SET CMP0063 NEW)
 
