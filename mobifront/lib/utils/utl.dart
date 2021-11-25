@@ -9,6 +9,8 @@ import 'package:flutter/material.dart' as w;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:intl/intl.dart';
 
+import '../views/components/future_progress_dialog.dart';
+
 class Utl {
   static DateTime birthDay(DateTime birth) {
     if (Utl.isEmptyDate(birth)) {
@@ -25,19 +27,19 @@ class Utl {
 
 
 static Future<void> execProgress(
-    BuildContext context, String? message, Future<void> Function() f) async {
+    w.BuildContext context, String? message, Future<void> Function() f) async {
   try {
-    await showDialog(
+    await w.showDialog(
         barrierDismissible: false,
-        context: mainContext!,
+        context: context,
         builder: (context) => FutureProgressDialog(Future(() async {
               await f();
             }),
                 message: message == null
-                    ? Text(message ?? "Aguarde...")
+                    ? w.Text(message ?? "Aguarde...")
                     : message.isEmpty
                         ? null
-                        : Text(message)));
+                        : w.Text(message)));
   } catch (e) {
     Utl.log("execProgress", e);
   }
@@ -860,7 +862,7 @@ static Future<void> execProgress(
 //            String parameters = s.toLowerCase().replaceAll("-", " ").replaceAll(" ", "+");
     String parameters = s.toLowerCase().replaceAll(" ", "+");
     return Uri.encodeFull(
-        "https://www.google.com/maps/place/?api=1&q=$parameters");
+        "https://www.google.com/maps/search/?api=1&q=$parameters");
   }
 
 

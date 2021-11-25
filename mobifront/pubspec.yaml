@@ -40,7 +40,11 @@ dependencies:
 
   location:
 
+  flutter_dialogs: ^2.1.0
+
   platform_device_id: ^1.0.1
+
+  url_launcher: ^6.0.15
 
   # firebase 
   firebase_core: ^1.10.0

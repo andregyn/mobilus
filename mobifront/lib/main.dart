@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobifront/views/details/details_page.dart';
 import 'package:mobifront/views/home/home_page.dart';
+import 'package:mobifront/views/topmost/top_most_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
           routes: {
             // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) => const HomePage(),
+            '/top_most': (context) => const TopMostPage(),
             '/details': (context) => const DetailsPage(),
           });
     });

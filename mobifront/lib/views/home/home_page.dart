@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobifront/utils/utl.dart';
 import 'package:mobifront/views/components/line_chart_template.dart';
+import 'package:mobifront/views/components/my_dialogs.dart';
 import 'package:mobifront/views/components/my_error_container.dart';
 import 'package:mobifront/views/components/my_waitfor_info.dart';
 import 'package:mobifront/views/home/home_controller.dart';
@@ -150,6 +151,35 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      bool called = false;
+                                      bool ok = false;
+                                      await Utl.execProgress(
+                                          context, "Obtendo dados...",
+                                          () async {
+                                        if (!called) {
+                                          ok = await controller.getTopMost() &&
+                                              await controller
+                                                  .retrieveDocuments();
+                                        }
+                                      });
+                                      if (ok) {
+                                        Navigator.pushNamed(
+                                            context, "/top_most",
+                                            arguments: controller);
+                                      } else {
+                                        MyDialogs.showDialogError(context,
+                                            "Falha", controller.locationError);
+                                      }
+                                    },
+                                    child: const Text(
+                                        "Ver piores dias no último mês...")),
+                              ],
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 32, left: 8.0, right: 8, bottom: 16),
@@ -178,24 +208,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                ElevatedButton(
-                                    onPressed: () async {
-                                      bool called= false;
-                                      bool ok = false;
-                                      await Utl.execProgress(context, "Obtendo dados...", async () { 
-                                        if (!called) { 
-                                      ok = await controller.getTopMost();
-
-                                        }
-
-                                      });
-                                      Navigator.pushNamed(context, "/details",
-                                          arguments: controller);
-                                    },
-                                    child: const Text(
-                                        "Ver piores dias no último mês...")),
                                 ElevatedButton(
                                     onPressed: () {
                                       Navigator.pushNamed(context, "/details",

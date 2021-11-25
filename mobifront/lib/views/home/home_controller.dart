@@ -151,6 +151,8 @@ class HomeController {
     }
   }
 
+  QuerySnapshot? fireDocs;
+
   /// requisito (questão) 4
   /// pegar o dia com maior quantidade de casos no ultimo mês
   /// pegar o dia com maior quantidade de numero de mortes no último mês
@@ -173,8 +175,11 @@ class HomeController {
     if ((deviceId ?? "").isNotEmpty) {
       if (await getCurrentPosition()) {
         // persistir dados no firestore
-        await FirebaseFirestore.instance.collection("top_mosts").add({
-          "device": deviceId!,
+        FirebaseFirestore.instance
+            .collection("top_mosts")
+            .doc(deviceId!)
+            .collection("dates")
+            .add({
           "date": Utl.ansiDateTime(DateTime.now()),
           "deaths": sdeaths.first.cases,
           "deaths_at": Utl.ansiDate(sdeaths.first.date),
@@ -190,6 +195,20 @@ class HomeController {
       }
     }
 
+    return false;
+  }
+
+  /// obter os documentos referente a este dispositivo dentro do firebase
+  Future<bool> retrieveDocuments() async {
+    String? deviceId = await PlatformDeviceId.getDeviceId;
+    if ((deviceId ?? "").isNotEmpty) {
+      fireDocs = await FirebaseFirestore.instance
+          .collection("top_mosts")
+          .doc(deviceId!)
+          .collection("dates")
+          .get();
+      return true;
+    }
     return false;
   }
 
