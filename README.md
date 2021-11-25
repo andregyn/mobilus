@@ -10,3 +10,6 @@ Para gerência de estado NÃO utilizei o MobX. Está usando somente o modo nativ
 
 ## Ambiente de desenvolvimento
 Tanto Back end quanto Front end foram desenvolvidos usando o editor Visual Studio Code versão 1.62.3, no Sistema Operacional Ubuntu 20.04.3 LTS, usando Gnome 41 Wayland.
+
+## Snapshot da tela do Firebase
+![alt text](https://github.com/andregyn/mobilus/blob/main/snap_db_firebase.png)
